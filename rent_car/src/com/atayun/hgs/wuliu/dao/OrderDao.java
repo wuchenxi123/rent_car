@@ -8,7 +8,7 @@ import com.atayun.hgs.wuliu.po.Pricing;
 
 public interface OrderDao {
 	
-	//车主查看订单
+	//车主查看订单gyik
 	public ArrayList<Order> getOrderListByID(Integer userId,Integer orderFlag);
 	
 	//车主根据orderOId来查看订单的详情

@@ -2,7 +2,7 @@ package com.atayun.hgs.wuliu.utils.sql;
 
 public interface UserSQL {
 	
-	public String registertUserSQL = "insert into tb_user(USER_MOBILE,USER_PASSWORD,USER_IDCARD,user_type,USER_LICENSE,user_remainder,user_regtime) " +
+	public String registertUserSQL = "insert into tb_user(user_mobile,user_password,user_idcard,user_type,user_license,user_verifycode,user_regtime) " +
 								"values(?,?,?,?,?,?,sysdate())";
 	
 	//登陆成功够根据手机号获取ID号

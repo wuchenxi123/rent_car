@@ -62,10 +62,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	
    	<h2>test 验证码输入和用户输入默认注册</h2>
     <form action="user.do?method=register" method="post">
-   	短信验证码：<input type="text" name="code"/><br>
    	手机号码：<input type="text" name="userMobile" /><br>
-   	用户身份状态：<input type="text" name="userFlag" /><br>
    	密码：<input type="text" name="userPassword"/><br>
+   	用户身份号：<input type="text" name="userIDCard" /><br>
+   	驾驶证号：<input type="text" name="userLicense"/><br>
+   	短信验证码：<input type="text" name="userVerifyCode"/><br>
    	<input type="submit" value="提交"/>
    	
    	</form>
@@ -125,5 +126,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	 货主的ID：<input type="text" name="userId"/><br>
    	<input type="submit" value="提交"/>
    	</form>
+   	
+   	
+   	<hr/>
+   	 <form action="rent.do?method=selectCar" method="post">
+   	<input type="submit" value="提交"/>
+   	</form>
+   	<hr>
+   	 <form action="rent.do?method=rentCar" method="post">
+    userid:<input type=text name=userId value="1"><br>
+   takeCartype <input type=text name=carTaketype value="0"><br>
+    rentinfo.rentPlace<input type=text name=rentPlace value="长沙火车站"><br>
+    takeTime<input type=text name=takeTime value="2015-04-03 16:13"><br>
+    rentinfo.rentDays<input type=text name=rentDays value="3"><br>
+    carid<input type=text name=carId value="1"><br>
+    orderPrice<input type=text name=orderPrice value="200"><br>
+   	<input type="submit" value="提交"/>
+   	
+   	</form>
+   	
   </body>
 </html>

@@ -3,12 +3,6 @@ package com.atayun.hgs.wuliu.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.atayun.hgs.wuliu.po.CarInformation;
-import com.atayun.hgs.wuliu.po.CarOwner;
-import com.atayun.hgs.wuliu.po.CargoOwner;
-import com.atayun.hgs.wuliu.po.Company;
-import com.atayun.hgs.wuliu.po.User;
-
 public class CommonUtils{
 
 	/**
@@ -91,60 +85,16 @@ public class CommonUtils{
 	 * @param userPassword
 	 * @return
 	 */
-	public static boolean isFit4ImproveCargo(CargoOwner owner,User user) {
-		
-		boolean flag = true;
-		if(owner.getCagoMobile().trim().length()==0){
-			flag = false;
-		}		
-		if(user.getUserName().trim().length()==0||
-				   user.getUserIDCard().trim().length()==0||
-				   user.getUserIDCardURLN().trim().length()==0||
-				   user.getUserIDCardURLP().trim().length()==0){
-					flag = false;
-		}
-		return flag;
-	}
 	
-	public static boolean isFit4ImproveCarUser(CarOwner owner,User user) {
-		
-		boolean flag = true;
-		if(owner.getCaroMobile().trim().length()==0){
-			flag = false;
-		}
-		
-		if(user.getUserName().trim().length()==0||
-		   user.getUserIDCard().trim().length()==0||
-		   user.getUserIDCardURLN().trim().length()==0||
-		   user.getUserIDCardURLP().trim().length()==0){
-			flag = false;
-		}
-		return flag;
-	}
+	
+	
 	
 	/**
 	 * 只要是企业认证信息中的任何一项没填，那么认为企业信息未完善
 	 * @param company
 	 * @return
 	 */
-	public static boolean isFit4ImproveCompany(Company company) {
-		
-		boolean flag = true;
-		if(company.getCompName().trim().length()==0||
-		   company.getCompTaxNo().trim().length()==0||
-		   company.getCompWorkPhone().trim().length()==0||
-		   company.getCompCPPicURL().trim().length()==0||
-		   company.getCompSWDJFBURL().trim().length()==0||
-		   company.getCompKHXKZURL().trim().length()==0||
-		   company.getCompXQSWMBURL().trim().length()==0||
-		   company.getCompProvice().trim().length()==0||
-		   company.getCompCity().trim().length()==0||
-		   company.getCompStreet().trim().length()==0){
-			
-			flag = false;
-		}		
-		return flag;
-	}
+	
 	//车牌正则表达验证
 	public static boolean isLpnum(String lpNum){
 		// 查找以Java开头,任意结尾的字符串
@@ -160,32 +110,7 @@ public class CommonUtils{
 		Matcher matcher = pattern.matcher(lpNum.trim());
 		return matcher.matches(); // 当条件满足时，将返回true，否则返回false
 	}
-	public static boolean isCompleted(CarOwner carOwner,CarInformation carInfo){
-		boolean flag=false;
-		String caroDlicpicurl=carOwner.getCaroDlicpicurl().trim();//车主驾驶证图片地址
-		int cartId=carInfo.getCartId();//车辆类型（1-14）
-		String cariLpnum=carInfo.getCariLpnum().trim();//车辆车牌号
-		String cariPicUrl=carInfo.getCariPicUrl().trim();//车辆图片地址
-		float cariLoad=carInfo.getCariLoad();//载重量
-		String cariLunit=carInfo.getCariLunit().trim();//载重单位
-		float cariVolume=carInfo.getCariVolume();//承载方
-		String cariVunit=carInfo.getCariVunit().trim();//单位
-		String cariDlicUrl=carInfo.getCariDlicUrl();//行驶证图片地址
-		float cariLength=carInfo.getCariLength();//车长
-		flag=(caroDlicpicurl!=""
-				&&cariPicUrl!=""
-				&&cariLpnum!=""
-				&&(0<cartId&&cartId<15) 
-				&& (cariLoad > 0)
-				&&cariLunit!=""
-				&&(cariVolume>0)
-				&&cariVunit!=""
-				&&cariDlicUrl!=""
-				&&cariLength>0
-				);
-		
-		return flag;
-	}
+	
 	
 }
 

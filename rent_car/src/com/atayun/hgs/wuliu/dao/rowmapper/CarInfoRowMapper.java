@@ -26,6 +26,8 @@ public class CarInfoRowMapper implements RowMapper{
 		carInfo.setCarFlag(rs.getInt("car_flag"));
 		carInfo.setInsurePrice(rs.getFloat("insure_price"));
 		carInfo.setScsmPrice(rs.getFloat("scsm_price"));
+		carInfo.setSpFlag(rs.getInt("sp_flag"));
+		carInfo.setCarTaketype(rs.getInt("car_takeType"));
 		return carInfo;
 	}
 

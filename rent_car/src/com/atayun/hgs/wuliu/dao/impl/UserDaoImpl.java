@@ -10,12 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.atayun.hgs.wuliu.dao.UserDao;
-import com.atayun.hgs.wuliu.dao.rowmapper.CargoOwnerRowMapper;
-import com.atayun.hgs.wuliu.dao.rowmapper.CompanyRowMapper;
-import com.atayun.hgs.wuliu.dao.rowmapper.UserBaseRowMapper;
 import com.atayun.hgs.wuliu.dao.rowmapper.UserRowMapper;
-import com.atayun.hgs.wuliu.po.CargoOwner;
-import com.atayun.hgs.wuliu.po.Company;
 import com.atayun.hgs.wuliu.po.User;
 import com.atayun.hgs.wuliu.utils.CommonUtils;
 import com.atayun.hgs.wuliu.utils.yzxSMS;
@@ -203,7 +198,7 @@ public class UserDaoImpl implements UserDao{
 		//默认设置USER_MOBILE,USER_PASSWORD,USER_IDCARD,user_type,USER_LICENSE,user_remainder,user_regtime
 		jdbcTemplate.update(UserSQL.registertUserSQL,
 							new Object[]{user.getUserMobile(),user.getUserPassword(),user.getUserIDCard(),user.getUserType(),
-				user.getUserLicense(),user.getUserRemainder()});
+				user.getUserLicense(),user.getUserVerifyCode()});
 
 	}
 
@@ -539,83 +534,9 @@ public class UserDaoImpl implements UserDao{
 		return flag;
 	}
 
-	/**
-	 * 查看货主信息
-	 */
-	@SuppressWarnings("unchecked")
-	public CargoOwner getCargoUserBaseMeg(Integer userId) {
-
-		ArrayList<CargoOwner> cargoOwnerList = new ArrayList<CargoOwner>();
-		CargoOwner cargoOwner = null;
-		cargoOwnerList = (ArrayList<CargoOwner>)jdbcTemplate.query( UserSQL.getCargoUserBaseMegSQL,
-														new Object[]{userId}, 
-														new int[]{java.sql.Types.INTEGER}, 
-														new CargoOwnerRowMapper());
-		
-		if(!cargoOwnerList.isEmpty()){
-			cargoOwner = cargoOwnerList.get(0);
-		}
-		
-		return cargoOwner;
-	}
-
-	/**
-	 * 获取个人的信息
-	 */
-	@SuppressWarnings("unchecked")
 	public User getUserBaseMeg(Integer userId) {
-		
-		ArrayList<User> userList = new ArrayList<User>();
-		User user = null;
-		userList = (ArrayList<User>)jdbcTemplate.query( UserSQL.getUserBaseMegSQL,
-														new Object[]{userId}, 
-														new int[]{java.sql.Types.INTEGER}, 
-														new UserBaseRowMapper());
-		
-		if(!userList.isEmpty()){
-			user = userList.get(0);
-		}
-		
-		return user;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	/**
-	 * 查看企业信息
-	 */
-	@SuppressWarnings("unchecked")
-	public Company getCompBaseMeg(Integer userId) {
-		
-		ArrayList<Company> companyList = new ArrayList<Company>();
-		Company company = null;
-		companyList = (ArrayList<Company>)jdbcTemplate.query( UserSQL.getCompanyBaseMegSQL,
-														new Object[]{userId}, 
-														new int[]{java.sql.Types.INTEGER}, 
-														new CompanyRowMapper());
-		
-		if(!companyList.isEmpty()){
-			company = companyList.get(0);
-		}
-		
-		return company;
-	}
-
-	/**
-	 * 上传头像
-	 
-	public boolean uploadPicture(User user) {
-		
-		boolean flag =false;
-		int result1 = -1;
-		result1 = jdbcTemplate.update(UserSQL.improveCarUserSQL1, 
-				new Object[]{user.getUserPicUrl(),user.getUserId()},
-				new int[]{java.sql.Types.VARCHAR,java.sql.Types.INTEGER});
-		
-		if(result1>0){
-			flag = true;
-		}
-		
-		return flag;
-	}
-
-	*/
 }

@@ -1,11 +1,5 @@
 package com.atayun.hgs.wuliu.dao;
 
-import java.util.ArrayList;
-
-import com.atayun.hgs.wuliu.po.CarOwner;
-import com.atayun.hgs.wuliu.po.CargoOwner;
-import com.atayun.hgs.wuliu.po.Company;
-import com.atayun.hgs.wuliu.po.LoginRecord;
 import com.atayun.hgs.wuliu.po.User;
 /**
  * UserDao 

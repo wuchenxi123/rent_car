@@ -31,6 +31,7 @@ public class OrderViewRowMapper implements RowMapper {
 		orderview.setReturnPlace(rs.getString("return_place"));
 		orderview.setReturnReTime(rs.getDate("return_reTime"));
 		orderview.setTakedriverId(rs.getInt("takedriver_id"));
+		orderview.setOverSpend(rs.getFloat("overSpend"));
 		return orderview;
 	}
 

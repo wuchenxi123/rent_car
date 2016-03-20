@@ -5,6 +5,7 @@ public interface CarSQL {
      public String getAllCarInfoByIdSQL="select * from tb_car where car_id=?";
    //根据车辆类型和车牌号获取车辆信息
      public String getCarInfoByBandAndLpnumSQL="select * from tb_car where car_band=? and car_lpnum=? and sp_flag=1";
+     public String getCarInfoByLpnumSQL="select * from tb_car where car_lpnum=? and sp_flag=1";
    //获取所有未被租用的车辆信息
      public String getAllCarInfoSQL="select * from tb_car where car_flag=0 and sp_flag=1";
     //设置车辆租用状态

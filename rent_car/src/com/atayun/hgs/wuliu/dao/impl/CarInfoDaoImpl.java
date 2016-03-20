@@ -68,6 +68,19 @@ public class CarInfoDaoImpl implements CarInfoDao{
 		}
 		return carinfo;
 	}
+	@SuppressWarnings("unchecked")
+	public CarInfo getCarByLpnum(String lpnum) {
+		CarInfo carinfo=new CarInfo();
+		ArrayList<CarInfo> carlist=new ArrayList<CarInfo>();
+		carlist=(ArrayList<CarInfo>)jdbcTemplate.query(CarSQL.getCarInfoByLpnumSQL,
+				                                        new Object[]{lpnum}, 
+				                                        new int[]{java.sql.Types.VARCHAR},
+				                                        new CarInfoRowMapper());
+		if(!carlist.isEmpty()){
+			carinfo=carlist.get(0);
+		}
+		return carinfo;
+	}
 	public boolean changeCarTakeType(int carid, int taketype) {
 		int rowchange=-1;
 		rowchange=jdbcTemplate.update(CarSQL.changeCarTakeTypeSQL,new  Object[]{taketype,carid}, 

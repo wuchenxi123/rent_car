@@ -7,12 +7,20 @@ package com.atayun.hgs.wuliu.utils.sql;
 public interface OrdersSQL {
 	  //添加订单详情
 		public String addRentOrderSQL = "insert into tb_order(user_id,order_price,rent_id) values(?,?,?)";
-		//添加订单详情
-		public String addReturnOrderSQL = "insert into tb_order(order_price,return_id) values(?,?,?,?)where order_id=?";
+		//添加订单详情还车信息
+		public String addReturnOrderSQL = "update tb_order set return_id=? where order_id=?";
+		
 		//更改订单状态
 		public String modifyOrderStatusSQL="update tb_order set order_status=? where order_id=?";
+		//修改订单价格
+		public String changeOrderPriceSQL="update tb_rentinfo r, tb_order o set o.order_price=?,r.rent_days=?,o.overSpend=?,o.order_status=? where  o.order_id=? and r.rent_id=o.rent_id ";
+		//更改超支费用
+	    public String changeOverSpendSQL="update tb_order set overSpend=? where order_id=?";
+		
+		
         //修改用户余额
 		public String changeUserRemainderSQL="update tb_user set user_remainder=? where user_id=?";
+		
 		
 		/*
 		 * view_rentorder表 没有还车详情
@@ -20,7 +28,7 @@ public interface OrdersSQL {
 		//获取用户所有订单信息
 		public String getAllOrderByUseridSQL="select * from view_rentorder where user_id=?";
 		//获取用户所有某状态下的订单信息
-		public String getAllOrderByFlagSQL="select * from view_rentorder where user_id=?and order_status=?";
+		public String getAllOrderByFlagSQL="select * from view_rentorder where user_id=? and order_status between 1 and ?";
 		//根据订单号获取订单详情
 		public String getOrderInfoByOrderidSQL="select * from view_rentorder where order_id=?";
 		
@@ -31,8 +39,12 @@ public interface OrdersSQL {
 		//获取用户所有完成的订单信息
 		public String getAllCompleteOrderByUseridSQL="select * from view_rentorder where user_id=?";
 		//根据订单号获取完成的订单详情
-		public String getCompleteOrderInfoByOrderidSQL="select * from view_rentorder where order_id=?";
+		public String getCompleteOrderInfoByOrderidSQL="select * from view_order where order_id=?";
 
+		/*
+		 * 查询订单相关详细信息
+		 */
+		public String getOrderRelatedInfoByOrderidSQL="select * from view_orderDetail where order_id=? ";
 		
 /*	//根据车主ID和订单的状态查找订单
 	public String getOrderListByIDSQL = "select ORDE_ID,USER_ID,ORDE_NO,ORDE_FLAG,ORDE_PRICE,UPDATETIME " +

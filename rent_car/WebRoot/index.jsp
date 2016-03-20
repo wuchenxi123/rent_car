@@ -144,6 +144,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<input type="submit" value="提交"/>
    	
    	</form>
+   	payOrder
+   	<form action="rent.do?method=payOrder" method="post">
+    orderid:<input type=text name="orderid" ><br>
+  	payflag<input type=text name="payflag" ><br>
+   	<input type="submit" value="提交"/>
+   	<br>
+   	showRentOrder<br>
+   	</form>
+   	<form action="rent.do?method=showRentOrder" method="post">
+    orderid:<input type=text name="orderid" ><br>
+   	<input type="submit" value="提交"/>
    	
+   	</form>
+   	 	getRemainder<br>
+   	<form action="user.do?method=getRemainder" method="post">
+    userId:<input type=text name="userId" ><br>
+   	<input type="submit" value="提交"/>
+   	
+   	</form>
+   	
+   	获取当前用户所有未还车订单的信息 
+   	 	getOrders<br>
+   	<form action="rent.do?method=getOrders" method="post">
+    userId:<input type=text name="userid" ><br>
+   	<input type="submit" value="提交"/>
+   	
+   	</form>
+   	使用中页面——还车页面
+   	 	getOrders<br>
+   	<form action="rent.do?method=carOnUse" method="post">
+    orderid:<input type=text name="orderid" ><br>
+   	<input type="submit" value="提交"/>
+   	
+   	</form>
   </body>
 </html>

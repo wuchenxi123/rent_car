@@ -21,7 +21,7 @@ public class RentOrderView {
   private int senddriverId;//送车司机ID
   private int rentDays;//租车天数
   private int returnId;//还车信息ID
- 
+  private float overSpend;
     
   
   public int getOrderId() {
@@ -125,6 +125,12 @@ public int getReturnId() {
 }
 public void setReturnId(int returnId) {
 	this.returnId = returnId;
+}
+public float getOverSpend() {
+	return overSpend;
+}
+public void setOverSpend(float overSpend) {
+	this.overSpend = overSpend;
 }
 
 }

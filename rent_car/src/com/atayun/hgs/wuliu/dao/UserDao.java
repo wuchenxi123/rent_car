@@ -36,6 +36,8 @@ public interface UserDao {
 	//找回密码,输入手机号，重新设置密码
 	public void resetUserPassword(String userMobile,String userPassword);
 	
+	public User getRemainder(int userId);
+	
 	//根据手机号码查询密码验证码
 	public String getUserVerifyCode(String userMobile);
 	

@@ -14,6 +14,7 @@ public interface CarInfoDao {
 		public boolean setCarBusy(int carid,int flag);
 	//根据车辆类型和车牌号获取车辆信息
 		public CarInfo getCarBybandAndLpnum(String band ,String lpnum);
+		public CarInfo getCarByLpnum(String lpnum);
 	//修改取/送车方式     0送车上门  上门还车（要交费）    1 公司地点取车  
 	    public boolean changeCarTakeType(int carid,int taketype);
 }

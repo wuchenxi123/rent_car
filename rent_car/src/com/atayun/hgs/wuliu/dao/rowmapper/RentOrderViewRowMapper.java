@@ -28,6 +28,7 @@ public class RentOrderViewRowMapper implements RowMapper {
 		rentorderview.setRentTakeTime(rs.getDate("rent_takeTime"));
 		rentorderview.setSenddriverId(rs.getInt("senddriver_id"));
 		rentorderview.setReturnId(rs.getInt("return_id"));
+		rentorderview.setOverSpend(rs.getFloat("overSpend"));
 		return rentorderview;
 	}
 

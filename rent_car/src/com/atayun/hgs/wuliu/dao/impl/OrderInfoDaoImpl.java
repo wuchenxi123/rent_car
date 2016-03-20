@@ -7,14 +7,18 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.atayun.hgs.wuliu.dao.OrderInfoDao;
+import com.atayun.hgs.wuliu.dao.rowmapper.OrderInfoRowMapper;
+import com.atayun.hgs.wuliu.dao.rowmapper.OrderViewRowMapper;
 import com.atayun.hgs.wuliu.dao.rowmapper.RentOrderViewRowMapper;
+ 
 import com.atayun.hgs.wuliu.po.OrderView;
+
 import com.atayun.hgs.wuliu.po.RentOrderView;
 import com.atayun.hgs.wuliu.utils.sql.OrdersSQL;
 
 @Repository
 public class OrderInfoDaoImpl implements OrderInfoDao{
-  @Autowired
+ @Autowired
   JdbcTemplate jdbcTemplate =new JdbcTemplate();
   
 //获取用户所有订单信息
@@ -60,14 +64,12 @@ public class OrderInfoDaoImpl implements OrderInfoDao{
 		  orderlist=( ArrayList<OrderView>)jdbcTemplate.query(OrdersSQL.getCompleteOrderInfoByOrderidSQL,
 					            new Object[]{orderId},
 					            new int[]{java.sql.Types.INTEGER},
-					            new RentOrderViewRowMapper());
+					            new OrderViewRowMapper());
 			if(!orderlist.isEmpty()){
 				order=orderlist.get(0);
 			}
 			return order;
 	}
-
-	
 
 	
 	//添加订单详情 返回订单ID 操作失败则返回-1
@@ -77,7 +79,7 @@ public class OrderInfoDaoImpl implements OrderInfoDao{
 				              new Object[]{userid,orderPrice,rentId},
 				              new int[]{java.sql.Types.INTEGER,java.sql.Types.FLOAT,java.sql.Types.INTEGER}
 				              );
-		if(row>=0){
+		if(row>0){
 		  //SELECT LAST_INSERT_ID()这个语句可以获取刚刚插入的数据自增的id
 				int  the_LAST_INSERT_ID=jdbcTemplate.queryForInt("SELECT LAST_INSERT_ID()");
 				
@@ -93,7 +95,7 @@ public class OrderInfoDaoImpl implements OrderInfoDao{
 				              new Object[]{orderid,orderPrice,returnId},
 				              new int[]{java.sql.Types.INTEGER,java.sql.Types.INTEGER,java.sql.Types.FLOAT,java.sql.Types.INTEGER}
 				               );
-		if(row>=0){
+		if(row>0){
 		  //SELECT LAST_INSERT_ID()这个语句可以获取刚刚插入的数据自增的id
 				int  the_LAST_INSERT_ID=jdbcTemplate.queryForInt("SELECT LAST_INSERT_ID()");
 				
@@ -102,13 +104,16 @@ public class OrderInfoDaoImpl implements OrderInfoDao{
 			return -1;
 	}
 	//修改订单状态
-	public boolean changeOrderStatus(int status,int orderId) {
-
+	public boolean changeOrderStatus(int status,int orderid) {
+		
            int row=-1;
+           System.out.println("-------------aa-----------");
         		 row=  jdbcTemplate.update(OrdersSQL.modifyOrderStatusSQL,
-        				               new Object[]{status,orderId}, 
+        				               new Object[]{status,orderid}, 
                                         new int[]{java.sql.Types.INTEGER,java.sql.Types.INTEGER});
-        		 if(row>=0){
+        			
+
+        		 if(row>0){
         			 return true;
         		 }
 		return false;
@@ -120,11 +125,52 @@ public class OrderInfoDaoImpl implements OrderInfoDao{
 	               new Object[]{remainder,id}, 
                   new int[]{java.sql.Types.FLOAT,java.sql.Types.INTEGER});
 		 
-		 if(row>=0){
+		 if(row>0){
 			 return true;
 		 }else{
 			 return false;
 		 }
+	}
+	
+	
+//添加还车信息到订单
+	public int addReturnInfo(int orderid, int returnid) {
+		int row=-1;
+		row=jdbcTemplate.update(OrdersSQL.addReturnOrderSQL,
+				              new Object[]{returnid,orderid},
+				              new int[]{java.sql.Types.INTEGER,java.sql.Types.INTEGER}
+				               );
+		if(row>0){
+		  //SELECT LAST_INSERT_ID()这个语句可以获取刚刚插入的数据自增的id
+				int  the_LAST_INSERT_ID=jdbcTemplate.queryForInt("SELECT LAST_INSERT_ID()");
+				
+				return the_LAST_INSERT_ID ;
+		}else
+			return -1;
+	}
+
+	//修改订单价格int orderid, float orderPrice,int rentDays,float overSpend,int orderStatus
+	public boolean changeOrderPrice(int orderid, float orderPrice,int rentDays,float overSpend,int orderStatus) {
+		int row=-1;
+		row=jdbcTemplate.update(OrdersSQL.changeOrderPriceSQL,
+				              new Object[]{orderPrice,rentDays,overSpend,orderStatus,orderid,},
+				              new int[]{java.sql.Types.FLOAT,java.sql.Types.INTEGER,java.sql.Types.FLOAT,java.sql.Types.INTEGER,java.sql.Types.INTEGER}
+				               );
+		return row>0?true:false;
+	}
+
+	//修改订单超支
+	public boolean changeOverSpend(int orderid, float overSpend) {
+		int row=-1;
+		row=jdbcTemplate.update(OrdersSQL.changeOverSpendSQL,
+				              new Object[]{overSpend,orderid},
+				              new int[]{java.sql.Types.FLOAT,java.sql.Types.INTEGER}
+				               );
+		if(row>0){
+			return true;
+		}else
+			return false;
+
 	}
 	
 

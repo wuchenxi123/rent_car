@@ -24,7 +24,7 @@ public class OrderView {
   private String returnPlace;//还车ID
   private Date returnReTime;//还车时间
   private int takedriverId;//取车司机ID
-  
+  private float overSpend;
   public int getOrderId() {
 	  
 	return orderId;
@@ -145,6 +145,12 @@ public int getTakedriverId() {
 }
 public void setTakedriverId(int takedriverId) {
 	this.takedriverId = takedriverId;
+}
+public float getOverSpend() {
+	return overSpend;
+}
+public void setOverSpend(float overSpend) {
+	this.overSpend = overSpend;
 }
 
 }

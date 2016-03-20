@@ -25,6 +25,7 @@ public interface UserSQL {
 	//用户重新设置密码
 	public String resetPswByMobileSQL = "update tb_user set USER_PASSWORD=? where USER_MOBILE=?";
 	
+	public String getRemainderSQL ="select * from tb_user where USER_Id=?";
 	//完善用户的基本个人信息第一步，完善用户名和用户地址
 	public String improveCargoUser1SQL = "update tb_user set USER_NAME=?,USER_IDCARDURLP=?,USER_IDCARDURLN=?,USER_IDCARDFLAG=?," +
 										 "USER_IDCARD=?,USER_ADDR=?,INFOFLAG=? where USER_ID=?";

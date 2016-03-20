@@ -19,7 +19,7 @@ public class OrderInfoRowMapper implements RowMapper{
 		order.setCreateDate(rs.getTimestamp("craeteTime"));
 		order.setRentId(rs.getInt("rent_id"));
 		order.setReturnId(rs.getInt("return_id"));
-				
+		order.setOverSpend(rs.getFloat("overSpend"));
 		return order;
 	}
 

@@ -52,6 +52,10 @@ public class CarInfoService {
 	public CarInfo getCarBybandAndLpnum(String band, String lpnum) {
 		return carInfoDao.getCarBybandAndLpnum(band, lpnum);
 	}
+	//根据车辆类型和车牌号获取车辆信息
+		public CarInfo getCarByLpnum(String lpnum) {
+			return carInfoDao.getCarByLpnum(lpnum);
+		}
 	/**
 	 * getAllCarInformations：根据查询条件（起点-终点）查询车辆信息列表
 	 * 

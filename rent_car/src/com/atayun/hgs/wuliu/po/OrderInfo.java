@@ -16,6 +16,7 @@ public class OrderInfo {
 	private Date createDate;//创建时间
 	private int rentId;//租车信息
 	private int returnId;//还车信息
+	private float overSpend;
 	public int getOrderStatus() {
 		return orderStatus;
 	}
@@ -58,6 +59,12 @@ public class OrderInfo {
 	}
 	public void setOrderPrice(float orderPrice) {
 		this.orderPrice = orderPrice;
+	}
+	public float getOverSpend() {
+		return overSpend;
+	}
+	public void setOverSpend(float overSpend) {
+		this.overSpend = overSpend;
 	}
 	
 	

@@ -4,8 +4,10 @@ import java.util.Date;
 
 public class ReturnInfo {
   private int returnId;
-  private String returnPlace;
-  private Date returnReTime;
+  private int returnType;//还车方式 0 上门还车  1 公司地点还车
+  private String returnPlace;//还车地点
+  private Date returnReTime;//还车时间
+  
   public int getReturnId() {
 	return returnId;
 }
@@ -29,6 +31,12 @@ public int getUserId() {
 }
 public void setUserId(int userId) {
 	this.userId = userId;
+}
+public int getReturnType() {
+	return returnType;
+}
+public void setReturnType(int returnType) {
+	this.returnType = returnType;
 }
 private int userId;
 }

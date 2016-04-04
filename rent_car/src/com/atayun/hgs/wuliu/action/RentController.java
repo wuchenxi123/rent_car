@@ -33,11 +33,11 @@ import com.atayun.hgs.wuliu.utils.OutJsonUtils;
 @RequestMapping("/rent.do")
 public class RentController {
 	@Resource
-	private RentInfoService rentInfoService = new RentInfoService();
+	private RentInfoService rentInfoService;
 	@Resource
-	private CarInfoService carInfoService = new CarInfoService();
+	private CarInfoService carInfoService;
 	@Resource
-	private OrderInfoService orderInfoService = new OrderInfoService();
+	private OrderInfoService orderInfoService;
 
 	// 选车 同时创建租车信息
 	@RequestMapping(params = "method=selectCar", method = { RequestMethod.POST })

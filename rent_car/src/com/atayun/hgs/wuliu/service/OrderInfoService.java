@@ -158,6 +158,7 @@ public class OrderInfoService {
 				 sampleorder.setOrderid(order.getOrderId());
 				 sampleorder.setOrderPrice(order.getOrderPrice());
 				 sampleorder.setRentdays(order.getRentDays());
+				 sampleorder.setOrderStatus(order.getOrderStatus());
 				 orderlist.add(sampleorder);
 			 }
 		 }
@@ -176,6 +177,7 @@ public class OrderInfoService {
 					 sampleorder.setOrderid(order.getOrderId());
 					 sampleorder.setOrderPrice(order.getOrderPrice());
 					 sampleorder.setRentdays(order.getRentDays());
+					 sampleorder.setOrderStatus(order.getOrderStatus());
 					 orderlist.add(sampleorder);
 				 }
 			 }

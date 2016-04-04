@@ -17,7 +17,8 @@
         class="org.apache.commons.dbcp.BasicDataSource"  
         destroy-method="close">  
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>  
-        <property name="url" value="jdbc:mysql://115.29.49.47:3306/rent_car"></property>  
+         <property name="url" value="jdbc:mysql://115.29.49.47:3306/rent_car"></property>  
+       <!--   <property name="url" value="jdbc:mysql://localhost:3306/rent_car"></property>-->  
         <property name="username" value="root"></property>  
         <property name="password" value="123456"></property>  
         <property name="maxActive" value="100"></property>  

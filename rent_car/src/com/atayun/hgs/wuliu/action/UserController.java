@@ -208,6 +208,9 @@ public class UserController {
 		// 4.加密密码
 		String MD5Pwd = MD5.getMD5(user.getUserVerifyCode()
 				+ user.getUserPassword());
+		System.out.println(user.getUserVerifyCode()+"---"
+				+ user.getUserPassword());
+		System.out.println(MD5Pwd+"========");
 		if (MD5Pwd.length() == 32) {// 符合密码要求，传过来的是32位加密后的密码数据
 			// 6.获取的手机号码不为空时，设置手机号码为注册的号码
 			if (user.getUserMobile() != null) {// 获取到手机号
@@ -299,6 +302,14 @@ public class UserController {
 						if(list!=null){
 							  for(RentOrderView order:list){
 								 if( order.getOrderStatus()==1){
+									 orderStatus=1;
+									 RentOrderView rentOrderView = orderInfoService.getOrderInfo(order.getOrderId());
+									 JSONObject rentOrder = JSONObject.fromObject(rentOrderView, jsonConfig);
+									 jsonObject.put("rentOrderView", rentOrder);
+									 CarInfo carinfo=carInfoService.getCarBybandAndLpnum(rentOrderView.getRentCtype(), rentOrderView.getRentLpnum());
+									 System.out.println(carinfo+"----"+rentOrderView.getRentCtype()+rentOrderView.getRentLpnum());
+									 JSONObject carinfojs = JSONObject.fromObject(carinfo, jsonConfig);
+									 jsonObject.put("carInfo", carinfojs);//车辆信息
 //									 jsonObject.put("loginState", "10");   //用户有订单处在租车状态
 									 break;
 								 }else

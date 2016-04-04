@@ -52,6 +52,7 @@ public class UserService {
 		String userVerifyCode = userDao.getUserVerifyCode(userMobile);// 获取密码验证码
 		System.out.println(userVerifyCode + userPassword + "------------");
 		userPassword = MD5.getMD5(userVerifyCode + userPassword);
+		System.out.println(userPassword+"=======");
 		return userDao.loginUserByMobile(userMobile, userPassword);
 
 	}
